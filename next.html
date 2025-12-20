@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>One More Thing 💖</title>
+<style>
+html,body{
+ margin:0; height:100%; background:#020111; color:white;
+ display:flex; justify-content:center; align-items:center;
+ font-family:'Segoe UI',sans-serif; text-align:center;
+}
+#card{
+ padding:30px; background:rgba(255,255,255,.1);
+ border-radius:20px; box-shadow:0 0 30px pink;
+}
+.hidden{display:none}
+button{
+ margin-top:20px; padding:12px 30px;
+ border:none; border-radius:30px;
+ background:#ff69b4; color:white; font-size:1rem;
+}
+</style>
+</head>
+<body>
+<div id="card">
+ <h2>Tap to Reveal 🎁</h2>
+ <button onclick="reveal()">Tap 💝</button>
+ <div id="msg" class="hidden">
+  <h1>🎂 Happy Birthday Naina ✨</h1>
+  <p>You make everything brighter just by being you 💖</p>
+ </div>
+</div>
+<script>
+function reveal(){
+ document.querySelector('button').remove();
+ document.getElementById('msg').classList.remove('hidden');
+}
+</script>
+</body>
+</html>
+
