@@ -3,174 +3,179 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Naina ✨</title>
+<title>Happy Birthday Naina 🌙</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <style>
-*{box-sizing:border-box}
-html,body{
- margin:0; padding:0; width:100%; height:100%; overflow:hidden;
- font-family:'Segoe UI',sans-serif;
- background: linear-gradient(to top, #2c3e70, #020111);
-}
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to top, #2c3e70, #020111);
+    font-family: 'Dancing Script', cursive;
+    overflow: hidden;
+    color: white;
+  }
 
-/* Countdown */
-#countdown{
-  position: fixed;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 6rem;
-  font-weight: bold;
-  color: #ffb6c1; /* romantic pink */
-  z-index: 10;
+  /* --- Gift Section --- */
+  #gift-container {
+    text-align: center;
+    cursor: pointer;
+    z-index: 20;
+  }
 
-  /* ✅ Same background as body */
-  background: linear-gradient(to top, #2c3e70, #020111);
-}
+  .gift-box {
+    width: 150px;
+    animation: bounce 2s infinite;
+    filter: drop-shadow(0 0 15px #ff69b4);
+  }
 
-/* Scene */
-#scene{
- display:none; position:fixed; inset:0; min-height:100vh;
- color:white; text-align:center;
- display:flex; flex-direction:column;
- align-items:center; justify-content:center;
-}
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
 
-/* Stars */
-.star{
- position:absolute; width:2px; height:2px;
- background:white; opacity:.8;
- animation:twinkle 2s infinite alternate;
-}
-@keyframes twinkle{from{opacity:.3}to{opacity:1}}
+  /* --- Birthday Content (Hidden) --- */
+  #main-content {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 2s ease-in;
+    z-index: 10;
+  }
 
-/* Fireflies */
-.firefly{
- position:absolute; width:6px; height:6px;
- background:gold; border-radius:50%;
- box-shadow:0 0 8px gold;
- animation:fly 6s linear infinite;
-}
-@keyframes fly{
- from{transform:translateY(0)}
- to{transform:translateY(-120vh); opacity:0}
-}
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+  }
 
-/* Moon */
-.moon{
- position:absolute; top:40px; right:40px;
- width:90px; height:90px;
- background:#fff; border-radius:50%;
- box-shadow:0 0 40px #fff;
-}
+  /* --- 3-Tier Cake Styling --- */
+  .cake {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin-bottom: 40px;
+  }
 
-/* Teddy Lottie */
-.teddy lottie-player{
- width:250px; max-width:80vw;
- animation:float 3s ease-in-out infinite;
-}
-@keyframes float{
- 0%{transform:translateY(0)}
- 50%{transform:translateY(-15px)}
- 100%{transform:translateY(0)}
-}
+  .tier {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #f3e5f5;
+    border-radius: 10px 10px 0 0;
+    box-shadow: inset 0 -5px 0 rgba(0,0,0,0.1);
+  }
 
-/* Message */
-.message{
- margin-top:15px; font-size:1.3rem; padding:0 20px;
- animation:fadeIn 3s ease forwards;
- opacity:0;
-}
-@keyframes fadeIn{
- from{opacity:0} to{opacity:1}
-}
+  .bottom { width: 150px; height: 60px; bottom: 0; background: #ffc1e3; }
+  .middle { width: 110px; height: 50px; bottom: 50px; background: #f8bbd0; }
+  .top    { width: 70px;  height: 40px; bottom: 95px; background: #f48fb1; }
 
-/* Button */
-.next-btn{
- margin-top:25px; padding:12px 32px;
- font-size:1rem; border:none;
- border-radius:30px;
- background:#ff69b4; color:white;
- box-shadow:0 0 14px #ff69b4;
- cursor:pointer;
-}
+  .candle-container {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+  }
+
+  .candle { width: 8px; height: 40px; background: linear-gradient(to bottom, #fff, #ffeb3b); position: relative; }
+  .flame {
+    position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+    width: 10px; height: 15px; background: orange; border-radius: 50%;
+    box-shadow: 0 0 10px gold; animation: flicker 0.1s infinite alternate;
+  }
+
+  @keyframes flicker {
+    from { transform: translateX(-50%) scale(1); }
+    to { transform: translateX(-50%) scale(1.1) rotate(2deg); }
+  }
+
+  h1 { font-size: 4rem; text-shadow: 2px 2px 12px #000; margin: 10px 0; text-align: center; }
+  p { font-size: 1.5rem; text-shadow: 1px 1px 8px #000; margin-bottom: 30px; }
+
+  button {
+    padding: 15px 40px; font-size: 1.2rem; border: none; border-radius: 30px;
+    background: #ff69b4; color: white; cursor: pointer;
+    box-shadow: 0 0 20px #ff1493; transition: .2s;
+  }
+  button:hover { transform: scale(1.1); }
 </style>
-
-<!-- Lottie Player -->
-<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
 
-<div id="countdown">3...</div>
-
-<div id="scene">
- <div class="moon"></div>
-
- <!-- Working Lottie Teddy holding heart -->
- <!-- <div class="teddy"> -->
-  <!-- <lottie-player -->
-    <!-- src="https://assets10.lottiefiles.com/packages/lf20_zl0t27qv.json" -->
-    <!-- background="transparent" -->
-    <!-- speed="1" -->
-    <!-- loop -->
-    <!-- autoplay> -->
-  <!-- </lottie-player> -->
- <!-- </div> -->
-
- <div class="message">
-  💖 I have something special for you,<br>
-  <b>Naina ✨</b>
- </div>
-
- <button class="next-btn" onclick="goNext()">Tap for Next Surprise 💝</button>
+<div id="gift-container" onclick="openGift()">
+    <img src="https://cdn-icons-png.flaticon.com/512/214/214305.png" class="gift-box" alt="Gift">
+    <p>Tap to open your surprise...</p>
 </div>
 
-<!-- Romantic Music -->
+<div id="main-content">
+    <div class="cake">
+      <div class="candle-container">
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+      </div>
+      <div class="tier top"></div>
+      <div class="tier middle"></div>
+      <div class="tier bottom"></div>
+    </div>
+
+    <h1>Happy Birthday Naina 🌙</h1>
+    <p>It's your special day! 💖</p>
+
+    <button onclick="continueNext()">Continue</button>
+</div>
+
 <audio id="music" loop>
- <source src="https://cdn.pixabay.com/audio/2023/02/14/audio_9c1b0e8f45.mp3" type="audio/mpeg">
+  <source src="https://www.mboxdrive.com/i-think-they-call-this-love.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-let count=3;
-const cd=document.getElementById('countdown');
-const scene=document.getElementById('scene');
-const music=document.getElementById('music');
+function openGift() {
+    // 1. Play Music
+    const music = document.getElementById('music');
+    music.play().catch(e => console.log("Playback blocked"));
 
-const interval = setInterval(() => {
-    if(count > 0){
-        cd.innerText = count + '...';
-        count--;
-    } else {
-        clearInterval(interval);
-        cd.style.display = 'none';
-        scene.style.display = 'flex';
-        music.play();
-        stars();
-        fireflies();
+    // 2. Hide Gift / Show Cake
+    document.getElementById('gift-container').style.display = 'none';
+    document.getElementById('main-content').style.display = 'flex';
+
+    // 3. Launch Fireworks & Confetti
+    var duration = 5 * 1000;
+    var animationEnd = Date.now() + duration;
+    var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+    function randomInRange(min, max) {
+      return Math.random() * (max - min) + min;
     }
-}, 1000);
 
-function stars(){
- for(let i=0;i<80;i++){
-  let s=document.createElement('div'); s.className='star';
-  s.style.left=Math.random()*100+'vw';
-  s.style.top=Math.random()*100+'vh';
-  document.body.appendChild(s);
- }
+    var interval = setInterval(function() {
+      var timeLeft = animationEnd - Date.now();
+
+      if (timeLeft <= 0) {
+        return clearInterval(interval);
+      }
+
+      var particleCount = 50 * (timeLeft / duration);
+      // Fireworks from left and right
+      confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+      confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+    }, 250);
 }
 
-function fireflies(){
- setInterval(()=>{
-  let f=document.createElement('div'); f.className='firefly';
-  f.style.left=Math.random()*100+'vw';
-  f.style.bottom='0';
-  document.body.appendChild(f);
-  setTimeout(()=>f.remove(),6000);
- },800);
+function continueNext() {
+    window.location.href = "next.html";
 }
-
-function goNext(){window.location.href='next.html?celebrate=1'}
 </script>
+
 </body>
 </html>
