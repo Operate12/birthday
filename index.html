@@ -1,199 +1,164 @@
-Below is a **single-file HTML surprise page** that does exactly what you want:
-
-• QR opens page
-• Countdown **3 → 2 → 1**
-• Night background 🌙 with moon & flowers 🌸
-• Dancing teddy 🧸 with floating hearts 💖
-• Text: **"I have something special for you, Naina ✨"**
-• Button to redirect to next page
-
----
-
-## ✅ How to use
-
-1. Save this as **index.html**
-2. Push to GitHub repo
-3. Enable **GitHub Pages**
-4. QR must point to:
-   [https://operate12.github.io/birthday/](https://operate12.github.io/birthday/)
-
----
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Surprise ✨</title>
+<title>For Naina ✨</title>
 
 <style>
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: 'Segoe UI', sans-serif;
-    overflow: hidden;
+*{box-sizing:border-box}
+html,body{
+ margin:0; padding:0; width:100%; height:100%; overflow:hidden;
+ font-family:'Segoe UI',sans-serif;
+ background: linear-gradient(to top, #2c3e70, #020111);
 }
 
 /* Countdown */
-#countdown {
-    position: fixed;
-    inset: 0;
-    background: black;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 5rem;
-    z-index: 10;
+#countdown{
+ position:fixed; inset:0; background:black; color:white;
+ display:flex; align-items:center; justify-content:center;
+ font-size:5rem; z-index:10;
 }
 
-/* Main Scene */
-#scene {
-    display: none;
-    height: 100vh;
-    background: linear-gradient(to top, #020111, #191970);
-    color: white;
-    text-align: center;
+/* Scene */
+#scene{
+ display:none; position:fixed; inset:0; min-height:100vh;
+ color:white; text-align:center;
+ display:flex; flex-direction:column;
+ align-items:center; justify-content:center;
+}
+
+/* Stars */
+.star{
+ position:absolute; width:2px; height:2px;
+ background:white; opacity:.8;
+ animation:twinkle 2s infinite alternate;
+}
+@keyframes twinkle{from{opacity:.3}to{opacity:1}}
+
+/* Fireflies */
+.firefly{
+ position:absolute; width:6px; height:6px;
+ background:gold; border-radius:50%;
+ box-shadow:0 0 8px gold;
+ animation:fly 6s linear infinite;
+}
+@keyframes fly{
+ from{transform:translateY(0)}
+ to{transform:translateY(-120vh); opacity:0}
 }
 
 /* Moon */
-.moon {
-    position: absolute;
-    top: 40px;
-    right: 40px;
-    width: 90px;
-    height: 90px;
-    background: #fff;
-    border-radius: 50%;
-    box-shadow: 0 0 30px #fff;
+.moon{
+ position:absolute; top:40px; right:40px;
+ width:90px; height:90px;
+ background:#fff; border-radius:50%;
+ box-shadow:0 0 40px #fff;
 }
 
-/* Flowers */
-.flowers {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    font-size: 2.2rem;
+/* Teddy Lottie */
+.teddy lottie-player{
+ width:250px; max-width:80vw;
+ animation:float 3s ease-in-out infinite;
 }
-
-/* Teddy */
-.teddy {
-    margin-top: 120px;
-    font-size: 6rem;
-    animation: dance 1s infinite alternate;
-}
-
-@keyframes dance {
-    0% { transform: rotate(-5deg) translateY(0); }
-    100% { transform: rotate(5deg) translateY(-10px); }
-}
-
-/* Hearts */
-.heart {
-    position: absolute;
-    color: pink;
-    font-size: 1.2rem;
-    animation: float 3s infinite;
-}
-
-@keyframes float {
-    0% { transform: translateY(0); opacity: 1; }
-    100% { transform: translateY(-120px); opacity: 0; }
+@keyframes float{
+ 0%{transform:translateY(0)}
+ 50%{transform:translateY(-15px)}
+ 100%{transform:translateY(0)}
 }
 
 /* Message */
-.message {
-    margin-top: 20px;
-    font-size: 1.2rem;
-    padding: 0 20px;
+.message{
+ margin-top:15px; font-size:1.3rem; padding:0 20px;
+ animation:fadeIn 3s ease forwards;
+ opacity:0;
+}
+@keyframes fadeIn{
+ from{opacity:0} to{opacity:1}
 }
 
 /* Button */
-.next-btn {
-    margin-top: 25px;
-    padding: 12px 26px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 30px;
-    background: #ff69b4;
-    color: white;
-    cursor: pointer;
-    box-shadow: 0 0 10px #ff69b4;
+.next-btn{
+ margin-top:25px; padding:12px 32px;
+ font-size:1rem; border:none;
+ border-radius:30px;
+ background:#ff69b4; color:white;
+ box-shadow:0 0 14px #ff69b4;
+ cursor:pointer;
 }
-
 </style>
-</head>
 
+<!-- Lottie Player -->
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
 <body>
 
 <div id="countdown">3</div>
 
 <div id="scene">
-    <div class="moon"></div>
+ <div class="moon"></div>
 
-    <div class="teddy">🧸</div>
+ <!-- Working Lottie Teddy holding heart -->
+ <div class="teddy">
+  <lottie-player
+    src="https://assets10.lottiefiles.com/packages/lf20_zl0t27qv.json"
+    background="transparent"
+    speed="1"
+    loop
+    autoplay>
+  </lottie-player>
+ </div>
 
-    <div class="message">
-        💖💖💖<br>
-        I have something special for you, <b>Naina ✨</b>
-    </div>
+ <div class="message">
+  💖 I have something special for you,<br>
+  <b>Naina ✨</b>
+ </div>
 
-    <button class="next-btn" onclick="goNext()">Tap for Next Surprise 💝</button>
-
-    <div class="flowers">🌸 🌷 🌺 🌸 🌷 🌺</div>
+ <button class="next-btn" onclick="goNext()">Tap for Next Surprise 💝</button>
 </div>
 
+<!-- Romantic Music -->
+<audio id="music" loop>
+ <source src="https://cdn.pixabay.com/audio/2023/02/14/audio_9c1b0e8f45.mp3" type="audio/mpeg">
+</audio>
+
 <script>
-let count = 3;
-const cd = document.getElementById('countdown');
-const scene = document.getElementById('scene');
+let count=3;
+const cd=document.getElementById('countdown');
+const scene=document.getElementById('scene');
+const music=document.getElementById('music');
 
-const timer = setInterval(() => {
-    count--;
-    if (count === 0) {
-        clearInterval(timer);
-        cd.style.display = 'none';
-        scene.style.display = 'block';
-        startHearts();
-    } else {
-        cd.innerText = count;
-    }
-}, 1000);
+setInterval(()=>{
+ count--;
+ if(count===0){
+  cd.style.display='none';
+  scene.style.display='flex';
+  music.play();
+  stars();
+  fireflies();
+ } else cd.innerText=count;
+},1000);
 
-function startHearts() {
-    setInterval(() => {
-        const heart = document.createElement('div');
-        heart.className = 'heart';
-        heart.innerText = '❤';
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.bottom = '0px';
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 3000);
-    }, 400);
+function stars(){
+ for(let i=0;i<80;i++){
+  let s=document.createElement('div'); s.className='star';
+  s.style.left=Math.random()*100+'vw';
+  s.style.top=Math.random()*100+'vh';
+  document.body.appendChild(s);
+ }
 }
 
-function goNext() {
-    window.location.href = "next.html"; // change if needed
+function fireflies(){
+ setInterval(()=>{
+  let f=document.createElement('div'); f.className='firefly';
+  f.style.left=Math.random()*100+'vw';
+  f.style.bottom='0';
+  document.body.appendChild(f);
+  setTimeout(()=>f.remove(),6000);
+ },800);
 }
+
+function goNext(){window.location.href='next.html'}
 </script>
-
 </body>
 </html>
-```
-
----
-
-## 🌟 Optional Next Page
-
-Create **next.html** for final birthday wishes, photos, music, etc.
-
-If you want, I can:
-• Add 🎶 background music
-• Add 🌌 stars animation
-• Replace teddy with GIF
-• Customize text & colors
-• Build next.html surprise
-
-Just tell me 💝
