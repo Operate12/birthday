@@ -3,136 +3,157 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Naina 🌙</title>
+<title>Birthday Surprise</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
 
 <style>
-  html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(to top, #2c3e70, #020111);
-    font-family: 'Dancing Script', cursive;
-    overflow: hidden;
-    color: white;
-  }
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to top, #2c3e70, #020111);
+  font-family: 'Dancing Script', cursive;
+  overflow: hidden;
+  color: white;
+}
 
-  /* --- Gift Section --- */
-  #gift-container {
-    text-align: center;
-    cursor: pointer;
-    z-index: 20;
-  }
+/* --- Stars Background --- */
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: twinkle 2s infinite alternate;
+}
+@keyframes twinkle { from { opacity:0.4 } to { opacity:1 } }
 
-  .gift-box {
-    width: 150px;
-    animation: bounce 2s infinite;
-    filter: drop-shadow(0 0 15px #ff69b4);
-  }
+/* --- Gift Section --- */
+#gift-container {
+  text-align: center;
+  cursor: pointer;
+  z-index: 20;
+}
 
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
-  }
+.gift-box {
+  width: 150px;
+  animation: bounce 2s infinite;
+  filter: drop-shadow(0 0 15px #ff69b4);
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
 
-  /* --- Birthday Content (Hidden) --- */
-  #main-content {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    animation: fadeIn 2s ease-in;
-    z-index: 10;
-  }
+/* --- Birthday Content --- */
+#main-content {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 2s ease-in;
+  z-index: 10;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
 
-  @keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.8); }
-    to { opacity: 1; transform: scale(1); }
-  }
+/* --- Cake Styling --- */
+.cake {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin-bottom: 40px;
+}
 
-  /* --- 3-Tier Cake Styling --- */
-  .cake {
-    position: relative;
-    width: 150px;
-    height: 150px;
-    margin-bottom: 40px;
-  }
+.tier {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 10px 10px 0 0;
+  box-shadow: inset 0 -5px 0 rgba(0,0,0,0.1);
+}
 
-  .tier {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #f3e5f5;
-    border-radius: 10px 10px 0 0;
-    box-shadow: inset 0 -5px 0 rgba(0,0,0,0.1);
-  }
+.bottom { width: 150px; height: 60px; bottom: 0; background: #ffc1e3; }
+.middle { width: 110px; height: 50px; bottom: 50px; background: #f8bbd0; }
+.top    { width: 70px;  height: 40px; bottom: 95px; background: #f48fb1; }
 
-  .bottom { width: 150px; height: 60px; bottom: 0; background: #ffc1e3; }
-  .middle { width: 110px; height: 50px; bottom: 50px; background: #f8bbd0; }
-  .top    { width: 70px;  height: 40px; bottom: 95px; background: #f48fb1; }
+.candle-container {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
 
-  .candle-container {
-    position: absolute;
-    top: -25px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 10px;
-  }
+.candle { width: 8px; height: 40px; background: linear-gradient(to bottom, #fff, #ffeb3b); position: relative; }
+.flame {
+  position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+  width: 10px; height: 15px; background: orange; border-radius: 50%;
+  box-shadow: 0 0 10px gold; animation: flicker 0.1s infinite alternate;
+}
+@keyframes flicker { from { transform: translateX(-50%) scale(1); } to { transform: translateX(-50%) scale(1.1) rotate(2deg); } }
 
-  .candle { width: 8px; height: 40px; background: linear-gradient(to bottom, #fff, #ffeb3b); position: relative; }
-  .flame {
-    position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
-    width: 10px; height: 15px; background: orange; border-radius: 50%;
-    box-shadow: 0 0 10px gold; animation: flicker 0.1s infinite alternate;
-  }
+/* --- Text Styling --- */
+h1 { font-size: 4rem; text-shadow: 2px 2px 12px #ff1493; margin: 10px 0; text-align: center; }
+p { font-size: 1.5rem; text-shadow: 1px 1px 8px #ff69b4; margin-bottom: 30px; text-align: center; }
 
-  @keyframes flicker {
-    from { transform: translateX(-50%) scale(1); }
-    to { transform: translateX(-50%) scale(1.1) rotate(2deg); }
-  }
-
-  h1 { font-size: 4rem; text-shadow: 2px 2px 12px #000; margin: 10px 0; text-align: center; }
-  p { font-size: 1.5rem; text-shadow: 1px 1px 8px #000; margin-bottom: 30px; }
-
-  button {
-    padding: 15px 40px; font-size: 1.2rem; border: none; border-radius: 30px;
-    background: #ff69b4; color: white; cursor: pointer;
-    box-shadow: 0 0 20px #ff1493; transition: .2s;
-  }
-  button:hover { transform: scale(1.1); }
+/* --- Romantic Button --- */
+button {
+  padding: 15px 40px;
+  font-size: 1.4rem;
+  font-family: 'Dancing Script', cursive;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(45deg, #ff69b4, #ff1493);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 20px #ff1493;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+button:hover { 
+  transform: scale(1.1);
+  box-shadow: 0 0 30px #ff69b4, 0 0 50px #ff1493;
+}
 </style>
 </head>
+
 <body>
 
+<!-- Stars will be appended by JS -->
+
 <div id="gift-container" onclick="openGift()">
-    <img src="https://cdn-icons-png.flaticon.com/512/214/214305.png" class="gift-box" alt="Gift">
-    <p>Tap to open your surprise...</p>
+  <img src="https://cdn-icons-png.flaticon.com/512/214/214305.png" class="gift-box" alt="Gift">
+  <p>Tap to open your surprise...</p>
 </div>
 
 <div id="main-content">
-    <div class="cake">
-      <div class="candle-container">
-        <div class="candle"><div class="flame"></div></div>
-        <div class="candle"><div class="flame"></div></div>
-        <div class="candle"><div class="flame"></div></div>
-      </div>
-      <div class="tier top"></div>
-      <div class="tier middle"></div>
-      <div class="tier bottom"></div>
+  <div class="cake">
+    <div class="candle-container">
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
     </div>
+    <div class="tier top"></div>
+    <div class="tier middle"></div>
+    <div class="tier bottom"></div>
+  </div>
 
-    <h1>Happy Birthday Naina 🌙</h1>
-    <p>It's your special day! 💖</p>
+  <h1>Happy Birthday Naina✨🌙</h1>
+  <p>It's your special day! 💖</p>
 
-    <button onclick="continueNext()">Continue</button>
+  <button onclick="continueNext()">Continue</button>
 </div>
 
 <audio id="music" loop>
@@ -140,42 +161,49 @@
 </audio>
 
 <script>
-function openGift() {
-    // 1. Play Music
-    const music = document.getElementById('music');
-    music.play().catch(e => console.log("Playback blocked"));
+/* --- Create Twinkling Stars --- */
+for(let i=0;i<100;i++){
+  const s = document.createElement('div');
+  s.className='star';
+  s.style.left = Math.random()*100+'vw';
+  s.style.top = Math.random()*100+'vh';
+  document.body.appendChild(s);
 
-    // 2. Hide Gift / Show Cake
-    document.getElementById('gift-container').style.display = 'none';
-    document.getElementById('main-content').style.display = 'flex';
-
-    // 3. Launch Fireworks & Confetti
-    var duration = 5 * 1000;
-    var animationEnd = Date.now() + duration;
-    var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
-
-    function randomInRange(min, max) {
-      return Math.random() * (max - min) + min;
-    }
-
-    var interval = setInterval(function() {
-      var timeLeft = animationEnd - Date.now();
-
-      if (timeLeft <= 0) {
-        return clearInterval(interval);
-      }
-
-      var particleCount = 50 * (timeLeft / duration);
-      // Fireworks from left and right
-      confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
-      confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
-    }, 250);
+  gsap.to(s, {
+    opacity: Math.random(),
+    duration: Math.random()*2+1,
+    repeat:-1,
+    yoyo:true
+  });
 }
 
+/* --- Open Gift Function --- */
+function openGift() {
+  const music = document.getElementById('music');
+  music.play().catch(e => console.log("Playback blocked"));
+
+  document.getElementById('gift-container').style.display = 'none';
+  document.getElementById('main-content').style.display = 'flex';
+
+  // Launch fireworks/confetti
+  var duration = 5 * 1000;
+  var animationEnd = Date.now() + duration;
+  var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+  function randomInRange(min, max){ return Math.random()*(max-min)+min; }
+
+  var interval = setInterval(function() {
+    var timeLeft = animationEnd - Date.now();
+    if(timeLeft <= 0){ return clearInterval(interval); }
+    var particleCount = 50*(timeLeft/duration);
+    confetti(Object.assign({}, defaults, { particleCount, origin:{x:randomInRange(0.1,0.3), y:Math.random()-0.2} }));
+    confetti(Object.assign({}, defaults, { particleCount, origin:{x:randomInRange(0.7,0.9), y:Math.random()-0.2} }));
+  }, 250);
+}
+
+/* --- Continue Button --- */
 function continueNext() {
-    window.location.href = "next.html";
+  window.location.href = "greeting.html";
 }
 </script>
-
 </body>
 </html>
