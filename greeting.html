@@ -18,15 +18,13 @@ html, body {
   margin:0;
   padding:0;
   width:100%;
-  height:100%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background: linear-gradient(to top, #2c3e70, #020111);
+  min-height:100%;
   font-family: 'Dancing Script', cursive;
   color:white;
-  overflow:hidden;
+  background: linear-gradient(to top, #2c3e70, #020111);
+  overflow-y: auto; /* allow scrolling */
   text-align:center;
+  position: relative;
 }
 
 /* Stars */
@@ -38,6 +36,7 @@ html, body {
   border-radius:50%;
   opacity:.8;
   animation:twinkle 2s infinite alternate;
+  z-index:1;
 }
 @keyframes twinkle{ from{opacity:.4} to{opacity:1;} }
 
@@ -49,18 +48,19 @@ html, body {
   padding: 35px;
   border-radius: 20px;
   max-width: 600px;
+  margin: 50px auto; /* allow spacing from top/bottom */
   box-shadow: 0 0 15px #ff69b4; /* softer shadow */
 }
 
 h1{
-  font-size:2.8rem;
-  text-shadow: 0 0 5px #ff1493; /* softer glow */
+  font-size:2.5rem;
+  text-shadow: 0 0 5px #ff1493;
   margin-bottom:20px;
 }
 p{
-  font-size:1.5rem;
+  font-size:1.4rem;
   line-height:1.8;
-  text-shadow: 0 0 2px #ff69b4; /* softer glow */
+  text-shadow: 0 0 2px #ff69b4;
   margin-bottom:15px;
 }
 
@@ -74,7 +74,7 @@ button{
   background: linear-gradient(45deg,#ff69b4,#ff1493);
   color:white;
   cursor:pointer;
-  box-shadow:0 0 15px #ff1493; /* softer shadow */
+  box-shadow:0 0 15px #ff1493;
   transition:.2s;
 }
 button:hover{
@@ -87,11 +87,11 @@ button:hover{
 
 <div class="letter-container">
   <h1>Dear Naina ! 🎉✨</h1>
-  <p>Today is all about you, and I hope it’s filled with laughter, surprises, and endless joy .</p>
-  <p>May this year bring you closer to your dreams, and may you always stay the beautiful, kind, and fun soul 💕 you are . </p>
-  <p>Thanks for being my partner , and my endless laughter ! 😉</p>
-  <p>Wishing you a day as fabulous as you are ! 🥳🎉</p>
-  <p>Once again happy birthday my dear  🎂</p>
+  <p>Today is all about you, and I hope it’s filled with laughter, surprises, and endless joy.</p>
+  <p>May this year bring you closer to your dreams, and may you always stay the beautiful, kind, and fun soul 💕 you are.</p>
+  <p>Thanks for being my partner, and my endless laughter! 😉</p>
+  <p>Wishing you a day as fabulous as you are! 🥳🎉</p>
+  <p>Once again happy birthday my dear 🎂</p>
   <button onclick="backToHome()">Back to Start</button>
 </div>
 
@@ -112,7 +112,7 @@ for(let i=0;i<100;i++){
   });
 }
 
-function backToHome(){ window.location.href=""; }
+function backToHome(){ window.location.href="birthday.html"; }
 </script>
 
 </body>
