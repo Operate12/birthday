@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>web</title>
+<title>index</title>
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -12,204 +12,197 @@
 <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/214/214305.png">
 
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-<script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
 
 <style>
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+*{box-sizing:border-box;}
+
+html,body{
+  margin:0;
+  padding:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  font-family:'Dancing Script', cursive;
   background: linear-gradient(to top, #2c3e70, #020111);
-  font-family: 'Dancing Script', cursive;
-  overflow: hidden;
-  color: white;
 }
 
-/* --- Stars Background --- */
-.star {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: white;
-  border-radius: 50%;
-  opacity: 0.8;
-  animation: twinkle 2s infinite alternate;
-}
-@keyframes twinkle { from { opacity:0.4 } to { opacity:1 } }
-
-/* --- Gift Section --- */
-#gift-container {
-  text-align: center;
-  cursor: pointer;
-  z-index: 20;
+/* Countdown */
+#countdown{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:6rem;
+  color:#ffd1dc;
+  background: linear-gradient(to top, #2c3e70, #020111);
+  z-index:10;
 }
 
-.gift-box {
-  width: 150px;
-  animation: bounce 2s infinite;
-  filter: drop-shadow(0 0 15px #ff69b4);
-}
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
-}
-
-/* --- Birthday Content --- */
-#main-content {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  animation: fadeIn 2s ease-in;
-  z-index: 10;
-}
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.8); }
-  to { opacity: 1; transform: scale(1); }
+/* Scene hidden initially */
+#scene{
+  display:none;
+  position:fixed;
+  inset:0;
+  color:white;
+  text-align:center;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
 }
 
-/* --- Cake Styling --- */
-.cake {
-  position: relative;
-  width: 150px;
-  height: 150px;
-  margin-bottom: 40px;
+/* Stars */
+.star{
+  position:absolute;
+  width:2px;
+  height:2px;
+  background:white;
+  opacity:.8;
+  animation:twinkle 2s infinite alternate;
+}
+@keyframes twinkle{
+  from{opacity:.4} to{opacity:1;}
 }
 
-.tier {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 10px 10px 0 0;
-  box-shadow: inset 0 -5px 0 rgba(0,0,0,0.1);
+/* Fireflies */
+.firefly{
+  position:absolute;
+  width:6px;
+  height:6px;
+  background:gold;
+  border-radius:50%;
+  box-shadow:0 0 8px gold;
+  animation:fly 6s linear infinite;
+}
+@keyframes fly{
+  from{transform:translateY(0)}
+  to{transform:translateY(-120vh); opacity:0;}
 }
 
-.bottom { width: 150px; height: 60px; bottom: 0; background: #ffc1e3; }
-.middle { width: 110px; height: 50px; bottom: 50px; background: #f8bbd0; }
-.top    { width: 70px;  height: 40px; bottom: 95px; background: #f48fb1; }
-
-.candle-container {
-  position: absolute;
-  top: -25px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 10px;
+/* 🌕 CSS Realistic Moon */
+.moon{
+  position:absolute;
+  top:40px;
+  right:40px;
+  width:160px;
+  height:160px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 30% 30%, #fdfdfd 20%, #e6e6e6 50%, #cfcfcf 75%),
+    radial-gradient(circle at 65% 55%, rgba(0,0,0,.12) 6%, transparent 8%),
+    radial-gradient(circle at 40% 70%, rgba(0,0,0,.10) 4%, transparent 6%),
+    radial-gradient(circle at 55% 35%, rgba(0,0,0,.08) 5%, transparent 7%);
+  box-shadow:
+    inset -18px -18px 28px rgba(0,0,0,.25),
+    0 0 50px rgba(255,255,255,.6);
+  opacity:0;
+  animation:moonIn 2.5s ease forwards;
+  animation-delay:1.5s;
+}
+@keyframes moonIn{
+  from{opacity:0; transform:scale(.9);}
+  to{opacity:1; transform:scale(1);}
 }
 
-.candle { width: 8px; height: 40px; background: linear-gradient(to bottom, #fff, #ffeb3b); position: relative; }
-.flame {
-  position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
-  width: 10px; height: 15px; background: orange; border-radius: 50%;
-  box-shadow: 0 0 10px gold; animation: flicker 0.1s infinite alternate;
+/* Message */
+.message{
+  margin-top:20px;
+  font-size:2rem;
+  padding:0 30px;
+  opacity:0;
+  animation:fadeIn 3s ease forwards;
+  animation-delay:2.2s;
 }
-@keyframes flicker { from { transform: translateX(-50%) scale(1); } to { transform: translateX(-50%) scale(1.1) rotate(2deg); } }
-
-/* --- Text Styling --- */
-h1 { font-size: 4rem; text-shadow: 2px 2px 12px #ff1493; margin: 10px 0; text-align: center; }
-p { font-size: 1.5rem; text-shadow: 1px 1px 8px #ff69b4; margin-bottom: 30px; text-align: center; }
-
-/* --- Romantic Button --- */
-button {
-  padding: 15px 40px;
-  font-size: 1.4rem;
-  font-family: 'Dancing Script', cursive;
-  border: none;
-  border-radius: 50px;
-  background: linear-gradient(45deg, #ff69b4, #ff1493);
-  color: white;
-  cursor: pointer;
-  box-shadow: 0 0 20px #ff1493;
-  transition: transform 0.2s, box-shadow 0.2s;
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(12px);}
+  to{opacity:1; transform:translateY(0);}
 }
-button:hover { 
-  transform: scale(1.1);
-  box-shadow: 0 0 30px #ff69b4, 0 0 50px #ff1493;
+
+/* Button */
+.next-btn{
+  margin-top:30px;
+  padding:14px 42px;
+  font-family:'Dancing Script', cursive;
+  font-size:1.4rem;
+  border:none;
+  border-radius:40px;
+  background:linear-gradient(45deg,#ff69b4,#ff1493);
+  color:white;
+  cursor:pointer;
+  opacity:0;
+  animation:fadeIn 3s ease forwards;
+  animation-delay:2.8s;
+}
+.next-btn:hover{
+  transform:scale(1.05);
 }
 </style>
 </head>
 
 <body>
 
-<!-- Stars will be appended by JS -->
+<div id="countdown">3...</div>
 
-<div id="gift-container" onclick="openGift()">
-  <img src="https://cdn-icons-png.flaticon.com/512/214/214305.png" class="gift-box" alt="Gift">
-  <p>Tap to open your surprise...</p>
-</div>
+<div id="scene">
+  <div class="moon"></div>
 
-<div id="main-content">
-  <div class="cake">
-    <div class="candle-container">
-      <div class="candle"><div class="flame"></div></div>
-      <div class="candle"><div class="flame"></div></div>
-      <div class="candle"><div class="flame"></div></div>
-    </div>
-    <div class="tier top"></div>
-    <div class="tier middle"></div>
-    <div class="tier bottom"></div>
+  <div class="message">
+    <br>
+    I have something special for you....🎁
   </div>
 
-  <h1>Happy Birthday Naina🌙</h1>
-  <p>It's your special day! 💖</p>
-
-  <button onclick="continueNext()">Continue</button>
+  <button class="next-btn" onclick="goNext()">Tap for Next Surprise</button>
 </div>
 
 <audio id="music" loop>
-  <source src="https://www.mboxdrive.com/i-think-they-call-this-love.mp3" type="audio/mpeg">
+  <source src="https://cdn.pixabay.com/audio/2023/02/14/audio_9c1b0e8f45.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-/* --- Create Twinkling Stars --- */
-for(let i=0;i<100;i++){
-  const s = document.createElement('div');
-  s.className='star';
-  s.style.left = Math.random()*100+'vw';
-  s.style.top = Math.random()*100+'vh';
-  document.body.appendChild(s);
+let count=3;
+const cd=document.getElementById('countdown');
+const scene=document.getElementById('scene');
+const music=document.getElementById('music');
 
-  gsap.to(s, {
-    opacity: Math.random(),
-    duration: Math.random()*2+1,
-    repeat:-1,
-    yoyo:true
-  });
+const timer=setInterval(()=>{
+  if(count>0){
+    cd.innerText = count+'...';
+    count--;
+  }else{
+    clearInterval(timer);
+    cd.style.display='none';
+    scene.style.display='flex';
+    music.play();
+    stars();
+    fireflies();
+  }
+},1000);
+
+function stars(){
+  for(let i=0;i<80;i++){
+    const s=document.createElement('div');
+    s.className='star';
+    s.style.left=Math.random()*100+'vw';
+    s.style.top=Math.random()*100+'vh';
+    document.body.appendChild(s);
+  }
 }
 
-/* --- Open Gift Function --- */
-function openGift() {
-  const music = document.getElementById('music');
-  music.play().catch(e => console.log("Playback blocked"));
-
-  document.getElementById('gift-container').style.display = 'none';
-  document.getElementById('main-content').style.display = 'flex';
-
-  // Launch fireworks/confetti
-  var duration = 5 * 1000;
-  var animationEnd = Date.now() + duration;
-  var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
-  function randomInRange(min, max){ return Math.random()*(max-min)+min; }
-
-  var interval = setInterval(function() {
-    var timeLeft = animationEnd - Date.now();
-    if(timeLeft <= 0){ return clearInterval(interval); }
-    var particleCount = 50*(timeLeft/duration);
-    confetti(Object.assign({}, defaults, { particleCount, origin:{x:randomInRange(0.1,0.3), y:Math.random()-0.2} }));
-    confetti(Object.assign({}, defaults, { particleCount, origin:{x:randomInRange(0.7,0.9), y:Math.random()-0.2} }));
-  }, 250);
+function fireflies(){
+  setInterval(()=>{
+    const f=document.createElement('div');
+    f.className='firefly';
+    f.style.left=Math.random()*100+'vw';
+    f.style.bottom='0';
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),6000);
+  },900);
 }
 
-/* --- Continue Button --- */
-function continueNext() {
-  window.location.href = "greeting.html";
+function goNext(){
+  window.location.href='next.html';
 }
 </script>
+
 </body>
 </html>
