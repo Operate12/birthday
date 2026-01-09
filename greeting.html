@@ -2,117 +2,164 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Letter 🎁</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Birthday Letter 💖</title>
+
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/214/214305.png">
 
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+
 <style>
 html, body {
-  margin:0;
-  padding:0;
-  width:100%;
-  min-height:100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
   font-family: 'Dancing Script', cursive;
-  color:white;
   background: linear-gradient(to top, #2c3e70, #020111);
-  overflow-y: auto; /* allow scrolling */
-  text-align:center;
-  position: relative;
+  color: white;
+  overflow-y: auto;
+  text-align: center;
 }
 
-/* Stars */
+/* ⭐ Stars */
 .star {
-  position:absolute;
-  width:2px;
-  height:2px;
-  background:white;
-  border-radius:50%;
-  opacity:.8;
-  animation:twinkle 2s infinite alternate;
-  z-index:1;
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: twinkle 2s infinite alternate;
+  z-index: 1;
 }
-@keyframes twinkle{ from{opacity:.4} to{opacity:1;} }
+@keyframes twinkle {
+  from { opacity: 0.4; }
+  to { opacity: 1; }
+}
 
-/* Letter Box */
-.letter-container {
+/* 📜 Letter Wrapper */
+.note-wrapper {
   position: relative;
-  z-index:10;
-  background: rgba(0,0,0,0.4);
+  max-width: 600px;
+  margin: 40px auto 260px;
+  z-index: 5;
+}
+
+/* 💌 Letter Box */
+.letter-container {
+  background: rgba(0, 0, 0, 0.4);
   padding: 35px;
   border-radius: 20px;
-  max-width: 600px;
-  margin: 50px auto; /* allow spacing from top/bottom */
-  box-shadow: 0 0 15px #ff69b4; /* softer shadow */
+  box-shadow: 0 0 15px rgba(255,105,180,0.6);
 }
 
-h1{
-  font-size:2.5rem;
-  text-shadow: 0 0 5px #ff1493;
-  margin-bottom:20px;
-}
-p{
-  font-size:1.4rem;
-  line-height:1.8;
-  text-shadow: 0 0 2px #ff69b4;
-  margin-bottom:15px;
+/* 🧸 Teddy */
+.teddy-bg {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 120px;
+
+  width: 320px;
+  max-width: 85%;
+  opacity: 0.35;
+  z-index: 2;
+  pointer-events: none;
 }
 
-button{
-  margin-top:20px;
-  padding:15px 40px;
-  font-size:1.3rem;
-  font-family:'Dancing Script',cursive;
-  border:none;
-  border-radius:50px;
-  background: linear-gradient(45deg,#ff69b4,#ff1493);
-  color:white;
-  cursor:pointer;
-  box-shadow:0 0 15px #ff1493;
-  transition:.2s;
+h1 {
+  font-size: 2.6rem;
+  margin-bottom: 20px;
+  text-shadow: 0 0 5px rgba(255,20,147,0.6);
 }
-button:hover{
-  transform:scale(1.1);
-  box-shadow:0 0 20px #ff69b4,0 0 30px #ff1493;
+
+p {
+  font-size: 1.4rem;
+  line-height: 1.8;
+  margin-bottom: 15px;
+  text-shadow: 0 0 2px rgba(255,105,180,0.5);
 }
 </style>
 </head>
+
 <body>
 
-<div class="letter-container">
-  <h1>Dear Naina ! 🎉✨</h1>
-  <p>Today is all about you, and I hope it’s filled with laughter, surprises, and endless joy.</p>
-  <p>May this year bring you closer to your dreams, and may you always stay the beautiful, kind, and fun soul 💕 you are.</p>
-  <p>Thanks for being a bearer, and endless laughter! 😉</p>
-  <p>Wishing you a day as fabulous as you are! 🥳🎉</p>
-  <p>Once again happy birthday my dear 🎂</p>
- 
+<!-- 📜 Letter + Teddy (attached together) -->
+<div class="note-wrapper">
+
+  <!-- 🧸 Teddy SVG -->
+  <svg class="teddy-bg" viewBox="0 0 300 360" xmlns="http://www.w3.org/2000/svg">
+    <!-- Body -->
+    <circle cx="150" cy="210" r="95" fill="#c49a6c"/>
+    <!-- Head -->
+    <circle cx="150" cy="95" r="65" fill="#d2aa7b"/>
+    <!-- Ears -->
+    <circle cx="85" cy="50" r="28" fill="#c49a6c"/>
+    <circle cx="215" cy="50" r="28" fill="#c49a6c"/>
+    <!-- Eyes -->
+    <circle cx="130" cy="95" r="6" fill="#000"/>
+    <circle cx="170" cy="95" r="6" fill="#000"/>
+    <!-- Nose -->
+    <ellipse cx="150" cy="115" rx="9" ry="6" fill="#000"/>
+    <!-- Letter -->
+    <rect x="95" y="180" width="110" height="70" rx="8" fill="#ffffff"/>
+    <line x1="105" y1="200" x2="195" y2="200" stroke="#ccc"/>
+    <line x1="105" y1="215" x2="195" y2="215" stroke="#ccc"/>
+    <!-- Arms -->
+    <ellipse cx="80" cy="210" rx="38" ry="24" fill="#c49a6c"/>
+    <ellipse cx="220" cy="210" rx="38" ry="24" fill="#c49a6c"/>
+  </svg>
+
+  <!-- 💖 Letter Content -->
+  <div class="letter-container">
+    <h1>Dear Naina ✨</h1>
+
+    <p>
+      Today is all about you, and I hope your day is filled with laughter,
+      surprises, and moments that make you smile endlessly 
+    </p>
+
+    <p>
+      May this year bring you closer to your dreams, surround you with happiness,
+      and remind you how special you truly are ✨
+    </p>
+
+    <p>
+      Thank you for being my partner in fun, support,
+      and the reason behind so many smiles 😉
+    </p>
+
+    <p>
+      Wishing you a birthday as beautiful, warm, and wonderful as your heart 🤍
+    </p>
+
+    <p style="color:yellow;">
+      Once again… Happy Birthday, my dear 🌙
+    </p>
+  </div>
+
 </div>
 
 <script>
-/* Stars Background */
-for(let i=0;i<100;i++){
-  const s=document.createElement('div');
-  s.className='star';
-  s.style.left=Math.random()*100+'vw';
-  s.style.top=Math.random()*100+'vh';
-  document.body.appendChild(s);
+/* ⭐ Stars Background */
+for (let i = 0; i < 120; i++) {
+  const star = document.createElement("div");
+  star.className = "star";
+  star.style.left = Math.random() * 100 + "vw";
+  star.style.top = Math.random() * 100 + "vh";
+  document.body.appendChild(star);
 
-  gsap.to(s,{
-    opacity:Math.random(),
-    duration:Math.random()*2+1,
-    repeat:-1,
-    yoyo:true
+  gsap.to(star, {
+    opacity: Math.random(),
+    duration: Math.random() * 2 + 1,
+    repeat: -1,
+    yoyo: true
   });
 }
-
-function backToHome(){ window.location.href=""; }
 </script>
 
 </body>
